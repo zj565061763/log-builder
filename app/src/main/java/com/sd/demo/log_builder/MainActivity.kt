@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 .pairHash("view hash", view).nextLine()
                 .pairStr("view string", view).nextLine()
                 .instance(view).nextLine()
-                .instanceStr(view)
+                .instanceStr(view).nextLine()
                 .uuid(UUID.randomUUID().toString())
         }
     }
