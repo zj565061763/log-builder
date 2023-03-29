@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 .pairHash("view hash", view).nextLine()
                 .pairStr("view string", view).nextLine()
                 .instance(view).nextLine()
-                .instanceStr(view)
+                .instanceStr(view).nextLine()
                 .uuid(UUID.randomUUID().toString())
         }
     }
@@ -49,6 +49,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 inline fun logMsg(block: () -> Any) {
     Log.i("log-builder-demo", block().toString())
 }
+```
+
+```
+|onCreate|instance:com.sd.demo.log_builder.MainActivity@3e43417
+|onResume|instance:com.sd.demo.log_builder.MainActivity@3e43417
+|onClick|
+|view:androidx.appcompat.widget.AppCompatButton@322048d|
+|view hash:androidx.appcompat.widget.AppCompatButton@322048d|
+|view string:androidx.appcompat.widget.AppCompatButton{322048d VFED..C.. ...P.... 419,0-661,132 #7f080041 app:id/btn}|
+|instance:androidx.appcompat.widget.AppCompatButton@322048d|
+|instanceStr:androidx.appcompat.widget.AppCompatButton{322048d VFED..C.. ...P.... 419,0-661,132 #7f080041 app:id/btn}|
+|uuid:0f7c4ab0-5859-4f88-99b3-00e52b5b6683
+|onStop|instance:com.sd.demo.log_builder.MainActivity@3e43417
+|onDestroy|instance:com.sd.demo.log_builder.MainActivity@3e43417
+
 ```
 
 # LogBuilder
