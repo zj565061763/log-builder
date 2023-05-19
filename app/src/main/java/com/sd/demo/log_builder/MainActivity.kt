@@ -3,28 +3,45 @@ package com.sd.demo.log_builder
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.view.Window
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.sd.demo.log_builder.ui.theme.AppTheme
 import com.sd.lib.logbuilder.FLogBuilder
-import java.util.*
+import java.util.UUID
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         logMsg {
             FLogBuilder().add("onCreate").instance(this@MainActivity)
         }
-    }
-
-    override fun onClick(view: View) {
-        logMsg {
-            FLogBuilder().add("onClick").nextLine()
-                .pair("view", view).nextLine()
-                .pairHash("view hash", view).nextLine()
-                .pairStr("view string", view).nextLine()
-                .instance(view).nextLine()
-                .instanceStr(view).nextLine()
-                .uuid(UUID.randomUUID().toString())
+        val view = findViewById<View>(Window.ID_ANDROID_CONTENT)
+        setContent {
+            AppTheme {
+                Content(
+                    onClick = {
+                        logMsg {
+                            FLogBuilder().add("onClick").nextLine()
+                                .pair("view", view).nextLine()
+                                .pairHash("view hash", view).nextLine()
+                                .pairStr("view string", view).nextLine()
+                                .instance(view).nextLine()
+                                .instanceStr(view).nextLine()
+                                .uuid(UUID.randomUUID().toString())
+                        }
+                    },
+                )
+            }
         }
     }
 
@@ -46,6 +63,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onDestroy()
         logMsg {
             FLogBuilder().add("onDestroy").instance(this@MainActivity)
+        }
+    }
+}
+
+@Composable
+private fun Content(
+    onClick: () -> Unit,
+) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(5.dp)
+    ) {
+        Button(
+            onClick = onClick
+        ) {
+            Text(text = "button")
         }
     }
 }
