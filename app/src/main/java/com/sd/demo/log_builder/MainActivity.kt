@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.sd.lib.logbuilder.FLogBuilder
+import com.sd.lib.log.builder.FLogBuilder
 import java.util.UUID
 
 class MainActivity : AppCompatActivity() {

@@ -1,6 +1,4 @@
-package com.sd.lib.logbuilder
-
-import android.view.View
+package com.sd.lib.log.builder
 
 interface LogBuilder {
     /**

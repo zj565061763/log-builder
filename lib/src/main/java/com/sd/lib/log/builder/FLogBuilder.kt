@@ -1,4 +1,4 @@
-package com.sd.lib.logbuilder
+package com.sd.lib.log.builder
 
 import android.view.View
 
