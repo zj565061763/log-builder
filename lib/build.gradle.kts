@@ -9,7 +9,7 @@ val libArtifactId = "log-builder"
 val libVersionName = "1.0.0"
 
 android {
-    namespace = "com.sd.lib.logbuilder"
+    namespace = "com.sd.lib.log.builder"
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.androidMinSdk.get().toInt()
