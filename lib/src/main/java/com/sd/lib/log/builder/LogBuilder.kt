@@ -86,3 +86,7 @@ interface LogBuilder {
         val separatorForPart: String
     }
 }
+
+fun fLogBuilder(msg: String? = null): LogBuilder {
+    return FLogBuilder().add(msg)
+}

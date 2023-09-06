@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.sd.lib.log.builder.FLogBuilder
+import com.sd.lib.log.builder.fLogBuilder
 import java.util.UUID
 
 class MainActivity : AppCompatActivity() {
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         logMsg {
-            FLogBuilder().add("onDestroy").instance(this@MainActivity)
+            fLogBuilder("onDestroy").instance(this@MainActivity)
         }
     }
 }
