@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.sd.lib.log.builder.FLogBuilder
 import com.sd.lib.log.builder.fLogBuilder
 import java.util.UUID
 
@@ -23,19 +22,25 @@ class MainActivity : AppCompatActivity() {
                     .uuid(UUID.randomUUID().toString())
             }
         }
+
+        logMsg {
+            fLogBuilder("onCreate")
+                .throwable(RuntimeException("hello throwable"))
+                .instance(this@MainActivity)
+        }
     }
 
     override fun onStart() {
         super.onStart()
         logMsg {
-            FLogBuilder().add("onStart").instance(this@MainActivity)
+            fLogBuilder("onStart").instance(this@MainActivity)
         }
     }
 
     override fun onStop() {
         super.onStop()
         logMsg {
-            FLogBuilder().add("onStop").instance(this@MainActivity)
+            fLogBuilder("onStop").instance(this@MainActivity)
         }
     }
 }
