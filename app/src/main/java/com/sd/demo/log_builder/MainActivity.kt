@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         findViewById<View>(R.id.btn).setOnClickListener { view ->
             logMsg {
-                FLogBuilder().add("onClick").nextLine()
+                fLogBuilder("onClick").nextLine()
                     .pair("view", view).nextLine()
                     .pairHash("view hash", view).nextLine()
                     .pairStr("view string", view).nextLine()
@@ -23,16 +23,12 @@ class MainActivity : AppCompatActivity() {
                     .uuid(UUID.randomUUID().toString())
             }
         }
-
-        logMsg {
-            FLogBuilder().add("onCreate").instance(this@MainActivity)
-        }
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         logMsg {
-            FLogBuilder().add("onResume").instance(this@MainActivity)
+            FLogBuilder().add("onStart").instance(this@MainActivity)
         }
     }
 
@@ -40,13 +36,6 @@ class MainActivity : AppCompatActivity() {
         super.onStop()
         logMsg {
             FLogBuilder().add("onStop").instance(this@MainActivity)
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        logMsg {
-            fLogBuilder("onDestroy").instance(this@MainActivity)
         }
     }
 }

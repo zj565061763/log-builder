@@ -1,5 +1,7 @@
 package com.sd.lib.log.builder
 
+import android.view.View
+
 interface LogBuilder {
     /**
      * 设置格式化对象
@@ -67,6 +69,11 @@ interface LogBuilder {
      * 等价与：add(clazz.getName())
      */
     fun clazzFull(clazz: Class<*>): LogBuilder
+
+    /**
+     * 异常信息
+     */
+    fun throwable(t: Throwable?): LogBuilder
 
     /**
      * 清空

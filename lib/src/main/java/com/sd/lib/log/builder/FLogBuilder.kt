@@ -1,5 +1,6 @@
 package com.sd.lib.log.builder
 
+import android.util.Log
 import android.view.View
 
 class FLogBuilder : LogBuilder {
@@ -59,6 +60,13 @@ class FLogBuilder : LogBuilder {
 
     override fun clazzFull(clazz: Class<*>) = apply {
         add(clazz.name)
+    }
+
+    override fun throwable(t: Throwable?) = apply {
+        if (t != null) {
+            nextLine()
+            add(Log.getStackTraceString(t))
+        }
     }
 
     override fun clear() = apply {
