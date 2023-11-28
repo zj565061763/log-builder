@@ -86,11 +86,11 @@ interface LogBuilder {
     fun build(): String
 
     interface Formatter {
-        /** 返回key-value之间的分隔符，默认":" */
-        val separatorForKeyValue: String
-
         /** 返回段与段之间的分隔符，默认"|" */
         val separatorForPart: String
+
+        /** 返回key-value之间的分隔符，默认":" */
+        val separatorForKeyValue: String
     }
 }
 

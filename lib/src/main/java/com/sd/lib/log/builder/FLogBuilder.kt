@@ -74,16 +74,13 @@ class FLogBuilder : LogBuilder {
     }
 
     override fun build(): String {
-        return buildString {
-            _list.forEach { item ->
-                append(formatter.separatorForPart)
-                val key = item.first
-                val value = item.second
-                if (key.isNullOrEmpty()) {
-                    append(value)
-                } else {
-                    append(key).append(formatter.separatorForKeyValue).append(value)
-                }
+        return _list.joinToString(separator = formatter.separatorForPart) { item ->
+            val key = item.first
+            val value = item.second
+            if (key.isNullOrEmpty()) {
+                value
+            } else {
+                "${key}${formatter.separatorForKeyValue}${value}"
             }
         }
     }
@@ -94,8 +91,8 @@ class FLogBuilder : LogBuilder {
 }
 
 private object DefaultLogFormatter : LogBuilder.Formatter {
-    override val separatorForKeyValue get() = ":"
     override val separatorForPart get() = "|"
+    override val separatorForKeyValue get() = ":"
 }
 
 private fun Any?.hashString(): String {
