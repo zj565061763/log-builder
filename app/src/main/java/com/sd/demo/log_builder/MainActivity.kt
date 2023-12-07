@@ -37,6 +37,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        logMsg {
+            fLogBuilder<MainActivity>().add("onResume").instance(this@MainActivity)
+        }
+    }
+
     override fun onStop() {
         super.onStop()
         logMsg {

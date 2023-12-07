@@ -97,3 +97,7 @@ interface LogBuilder {
 fun fLogBuilder(msg: String? = null): LogBuilder {
     return FLogBuilder().add(msg)
 }
+
+inline fun <reified T> fLogBuilder(): LogBuilder {
+    return FLogBuilder().clazz(T::class.java)
+}
