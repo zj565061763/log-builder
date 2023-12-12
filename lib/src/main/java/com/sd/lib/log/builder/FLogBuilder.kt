@@ -74,15 +74,32 @@ class FLogBuilder : LogBuilder {
     }
 
     override fun build(): String {
-        return _list.joinToString(separator = formatter.separatorForPart) { item ->
+        val buffer = StringBuffer()
+
+        _list.forEachIndexed { index, item ->
             val key = item.first
             val value = item.second
-            if (key.isNullOrEmpty()) {
+
+            // format
+            val content = if (key.isNullOrEmpty()) {
                 value
             } else {
                 "${key}${formatter.separatorForKeyValue}${value}"
             }
+
+            // content
+            buffer.append(content)
+
+            if (index < _list.lastIndex) {
+                if (item.isNextLine() || _list.getOrNull(index + 1).isNextLine()) {
+                    // ignore
+                } else {
+                    buffer.append(formatter.separatorForPart)
+                }
+            }
         }
+
+        return buffer.toString()
     }
 
     override fun toString(): String {
@@ -98,4 +115,9 @@ private object DefaultLogFormatter : LogBuilder.Formatter {
 private fun Any?.hashString(): String {
     if (this == null) return "null"
     return this.javaClass.name + "@" + Integer.toHexString(this.hashCode())
+}
+
+private fun Pair<String?, String>?.isNextLine(): Boolean {
+    if (this == null) return false
+    return first == null && second == "\n"
 }
