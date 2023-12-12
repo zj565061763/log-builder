@@ -5,12 +5,8 @@ import android.view.View
 
 class FLogBuilder : LogBuilder {
     private val _list = mutableListOf<Pair<String?, String>>()
-    private var _formatter: LogBuilder.Formatter? = null
-    private val formatter get() = _formatter ?: DefaultLogFormatter
-
-    override fun setFormatter(formatter: LogBuilder.Formatter?) = apply {
-        _formatter = formatter
-    }
+    private val _separatorForPart = "|"
+    private val _separatorForKeyValue = ":"
 
     override fun add(content: Any?) = apply {
         if (content == null) return@apply
@@ -84,7 +80,7 @@ class FLogBuilder : LogBuilder {
             val content = if (key.isNullOrEmpty()) {
                 value
             } else {
-                "${key}${formatter.separatorForKeyValue}${value}"
+                "${key}${_separatorForKeyValue}${value}"
             }
 
             // content
@@ -94,7 +90,7 @@ class FLogBuilder : LogBuilder {
                 if (item.isNextLine() || _list.getOrNull(index + 1).isNextLine()) {
                     // ignore
                 } else {
-                    buffer.append(formatter.separatorForPart)
+                    buffer.append(_separatorForPart)
                 }
             }
         }
@@ -105,11 +101,6 @@ class FLogBuilder : LogBuilder {
     override fun toString(): String {
         return build()
     }
-}
-
-private object DefaultLogFormatter : LogBuilder.Formatter {
-    override val separatorForPart get() = "|"
-    override val separatorForKeyValue get() = ":"
 }
 
 private fun Any?.hashString(): String {

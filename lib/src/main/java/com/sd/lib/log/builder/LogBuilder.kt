@@ -4,11 +4,6 @@ import android.view.View
 
 interface LogBuilder {
     /**
-     * 设置格式化对象
-     */
-    fun setFormatter(formatter: Formatter?): LogBuilder
-
-    /**
      * 添加[content]，[content]为null或者空则不添加，
      * [content]用[Object.toString]值显示
      */
@@ -84,14 +79,6 @@ interface LogBuilder {
      * 构建字符串
      */
     fun build(): String
-
-    interface Formatter {
-        /** 返回段与段之间的分隔符，默认"|" */
-        val separatorForPart: String
-
-        /** 返回key-value之间的分隔符，默认":" */
-        val separatorForKeyValue: String
-    }
 }
 
 fun fLogBuilder(msg: String? = null): LogBuilder {
