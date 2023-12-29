@@ -26,7 +26,7 @@ class FLogBuilder : LogBuilder {
         _list.add(Pair(key, finalValue))
     }
 
-    override fun pairHash(key: String?, value: Any?) = apply {
+    override fun pairHashFull(key: String?, value: Any?) = apply {
         pair(key, value.hashName())
     }
 

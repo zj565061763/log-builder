@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
             logMsg {
                 fLogBuilder("onClick").nextLine()
                     .pair("view", view).nextLine()
-                    .pairHash("view hash", view).nextLine()
+                    .pairHashFull("view hash", view).nextLine()
                     .pairStr("view string", view).nextLine()
                     .instance(view).nextLine()
                     .instanceFull(view).nextLine()
