@@ -43,10 +43,10 @@ interface LogBuilder {
      * 等价与：pair("instance", instance)，
      * [instance]用类名@hash值表示
      */
-    fun instanceHash(instance: Any?): LogBuilder
+    fun instanceFull(instance: Any?): LogBuilder
 
     /**
-     * 等价与：pair("instanceStr", instance)，
+     * 等价与：pair("instance", instance)，
      * [instance]用[Object.toString]值表示
      */
     fun instanceStr(instance: Any?): LogBuilder

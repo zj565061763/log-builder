@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
                     .pairHash("view hash", view).nextLine()
                     .pairStr("view string", view).nextLine()
                     .instance(view).nextLine()
+                    .instanceFull(view).nextLine()
                     .instanceStr(view).nextLine()
                     .uuid(UUID.randomUUID().toString())
             }
