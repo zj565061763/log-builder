@@ -11,6 +11,12 @@ interface LogBuilder {
 
     /**
      * 添加[content]，[content]为null或者空则不添加，
+     * [content]用短类名@hash值表示
+     */
+    fun addHash(content: Any?): LogBuilder
+
+    /**
+     * 添加[content]，[content]为null或者空则不添加，
      * [content]用类名@hash值表示
      */
     fun addHashFull(content: Any?): LogBuilder
