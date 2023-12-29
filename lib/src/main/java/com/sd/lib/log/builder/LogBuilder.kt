@@ -46,19 +46,19 @@ interface LogBuilder {
     fun pairStr(key: String?, value: Any?): LogBuilder
 
     /**
-     * 等价与：pair("instance", instance)，
+     * 等价与：pair("i", instance)，
      * [instance]用短类名@hash值表示
      */
     fun instance(instance: Any?): LogBuilder
 
     /**
-     * 等价与：pair("instance", instance)，
+     * 等价与：pair("i", instance)，
      * [instance]用类名@hash值表示
      */
     fun instanceFull(instance: Any?): LogBuilder
 
     /**
-     * 等价与：pair("instance", instance)，
+     * 等价与：pair("i", instance)，
      * [instance]用[Object.toString]值表示
      */
     fun instanceStr(instance: Any?): LogBuilder

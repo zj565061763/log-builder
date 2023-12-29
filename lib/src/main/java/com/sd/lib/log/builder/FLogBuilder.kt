@@ -45,15 +45,15 @@ class FLogBuilder : LogBuilder {
     }
 
     override fun instance(instance: Any?) = apply {
-        pair("instance", instance.hashSimpleName())
+        pair("i", instance.hashSimpleName())
     }
 
     override fun instanceFull(instance: Any?) = apply {
-        pair("instance", instance.hashName())
+        pair("i", instance.hashName())
     }
 
     override fun instanceStr(instance: Any?) = apply {
-        pair("instance", instance.toString())
+        pair("i", instance.toString())
     }
 
     override fun uuid(uuid: String?) = apply {
