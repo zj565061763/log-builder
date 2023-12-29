@@ -23,7 +23,7 @@ interface LogBuilder {
 
     /**
      * 添加一对内容，[key]为null或者空则不添加，
-     * [value]为[View]时用hash值表示，否则用[Object.toString]值表示
+     * [value]为[View]时用类名@hash值表示，否则用[Object.toString]值表示
      */
     fun pair(key: String?, value: Any?): LogBuilder
 
