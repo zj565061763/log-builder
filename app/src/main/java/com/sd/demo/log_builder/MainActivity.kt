@@ -14,12 +14,16 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.btn).setOnClickListener { view ->
             logMsg {
                 fLogBuilder("onClick").nextLine()
+
                     .pair("view", view).nextLine()
-                    .pairHashFull("view hash", view).nextLine()
+                    .pairHash("view hash", view).nextLine()
+                    .pairHashFull("view hash full", view).nextLine()
                     .pairStr("view string", view).nextLine()
+
                     .instance(view).nextLine()
                     .instanceFull(view).nextLine()
                     .instanceStr(view).nextLine()
+
                     .uuid(UUID.randomUUID().toString())
             }
         }

@@ -31,6 +31,12 @@ interface LogBuilder {
      * 添加一对内容，[key]为null或者空则不添加，
      * [value]用类名@hash值表示
      */
+    fun pairHash(key: String?, value: Any?): LogBuilder
+
+    /**
+     * 添加一对内容，[key]为null或者空则不添加，
+     * [value]用类名@hash值表示
+     */
     fun pairHashFull(key: String?, value: Any?): LogBuilder
 
     /**
