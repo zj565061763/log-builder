@@ -14,7 +14,7 @@ class FLogBuilder : LogBuilder {
         _list.add(Pair(null, content.toString()))
     }
 
-    override fun addHash(content: Any?) = apply {
+    override fun addHashFull(content: Any?) = apply {
         if (content == null) return@apply
         if (content is String && content.isEmpty()) return@apply
         _list.add(Pair(null, content.hashName()))
