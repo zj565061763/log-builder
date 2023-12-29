@@ -35,9 +35,15 @@ interface LogBuilder {
 
     /**
      * 等价与：pair("instance", instance)，
-     * [instance]用hash值表示
+     * [instance]用短类名@hash值表示
      */
     fun instance(instance: Any?): LogBuilder
+
+    /**
+     * 等价与：pair("instance", instance)，
+     * [instance]用类名@hash值表示
+     */
+    fun instanceHash(instance: Any?): LogBuilder
 
     /**
      * 等价与：pair("instanceStr", instance)，

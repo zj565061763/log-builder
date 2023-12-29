@@ -17,17 +17,17 @@ class FLogBuilder : LogBuilder {
     override fun addHash(content: Any?) = apply {
         if (content == null) return@apply
         if (content is String && content.isEmpty()) return@apply
-        _list.add(Pair(null, content.hashString()))
+        _list.add(Pair(null, content.hashName()))
     }
 
     override fun pair(key: String?, value: Any?) = apply {
         if (key.isNullOrEmpty()) return@apply
-        val finalValue = if (value is View) value.hashString() else value.toString()
+        val finalValue = if (value is View) value.hashName() else value.toString()
         _list.add(Pair(key, finalValue))
     }
 
     override fun pairHash(key: String?, value: Any?) = apply {
-        pair(key, value.hashString())
+        pair(key, value.hashName())
     }
 
     override fun pairStr(key: String?, value: Any?) = apply {
@@ -35,7 +35,11 @@ class FLogBuilder : LogBuilder {
     }
 
     override fun instance(instance: Any?) = apply {
-        pair("instance", instance.hashString())
+        pair("instance", instance.hashSimpleName())
+    }
+
+    override fun instanceHash(instance: Any?) = apply {
+        pair("instance", instance.hashName())
     }
 
     override fun instanceStr(instance: Any?) = apply {
@@ -103,9 +107,19 @@ class FLogBuilder : LogBuilder {
     }
 }
 
+private fun Any?.hashName(): String {
+    if (this == null) return "null"
+    return this.javaClass.name + "@" + this.hashString()
+}
+
+private fun Any?.hashSimpleName(): String {
+    if (this == null) return "null"
+    return this.javaClass.simpleName + "@" + this.hashString()
+}
+
 private fun Any?.hashString(): String {
     if (this == null) return "null"
-    return this.javaClass.name + "@" + Integer.toHexString(this.hashCode())
+    return Integer.toHexString(this.hashCode())
 }
 
 private fun Pair<String?, String>?.isNextLine(): Boolean {
