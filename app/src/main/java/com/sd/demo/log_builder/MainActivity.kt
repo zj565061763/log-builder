@@ -13,18 +13,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         findViewById<View>(R.id.btn).setOnClickListener { view ->
             logMsg {
-                fLogBuilder("onClick").nextLine()
+                fLogBuilder {
+                    add("onClick").nextLine()
 
-                    .pair("view", view).nextLine()
-                    .pairHash("view hash", view).nextLine()
-                    .pairHashFull("view hash full", view).nextLine()
-                    .pairStr("view string", view).nextLine()
+                    pair("view", view).nextLine()
+                    pairHash("view hash", view).nextLine()
+                    pairHashFull("view hash full", view).nextLine()
+                    pairStr("view string", view).nextLine()
 
-                    .instance(view).nextLine()
-                    .instanceFull(view).nextLine()
-                    .instanceStr(view).nextLine()
+                    instance(view).nextLine()
+                    instanceFull(view).nextLine()
+                    instanceStr(view).nextLine()
 
-                    .uuid(UUID.randomUUID().toString())
+                    uuid(UUID.randomUUID().toString())
+                }
             }
         }
 
