@@ -29,9 +29,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         logMsg {
-            fLogBuilder("onCreate")
-                .throwable(RuntimeException("hello throwable"))
-                .instance(this@MainActivity)
+            fLogBuilder {
+                add("onCreate")
+                instance(this@MainActivity)
+            }
         }
     }
 
@@ -45,14 +46,18 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         logMsg {
-            fLogBuilder<MainActivity>().add("onResume").instance(this@MainActivity)
+            fLogBuilder("onResume").instance(this@MainActivity)
         }
     }
 
     override fun onStop() {
         super.onStop()
         logMsg {
-            fLogBuilder("onStop").instance(this@MainActivity)
+            fLogBuilder {
+                add("onStop")
+                throwable(RuntimeException("hello throwable"))
+                instance(this@MainActivity)
+            }
         }
     }
 }

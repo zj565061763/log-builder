@@ -103,10 +103,6 @@ fun fLogBuilder(msg: String? = null): LogBuilder {
     return FLogBuilder().add(msg)
 }
 
-fun fLogBuilder(clazz: Class<*>): LogBuilder {
-    return FLogBuilder().clazz(clazz)
-}
-
-inline fun <reified T> fLogBuilder(): LogBuilder {
-    return fLogBuilder(T::class.java)
+inline fun fLogBuilder(block: LogBuilder.() -> Unit): LogBuilder {
+    return FLogBuilder().apply(block)
 }
